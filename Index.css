@@ -1,0 +1,110 @@
+@import url(/vendors/normalize.css);
+@import url(/vendors/fonts/fonts.css);
+
+
+.body {
+    font-family: 'inter', sans-serif;
+    background-color: #000;
+    width: 100%;
+    min-width: 300px;
+}
+
+.header {
+    height: 74px;
+    margin: 45px 200px;
+}
+
+.logo {
+
+    width: 142px;
+    height: 32px;
+    background-size: cover;
+    color: #fff;
+}
+
+.profile {
+    margin: 0 200px 50px;
+    display: flex;
+    align-items: center;
+}
+
+.profile__block-title {
+    display: flex;
+    flex-wrap: nowrap;
+
+}
+
+.avatar {
+    height: 130px;
+    border-radius: 50%;
+    margin-right: 30px;
+}
+
+.profile__title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 56px;
+    /* or 133% */
+    color: #FFFFFF;
+    margin: 16px 0;
+    padding: 0;
+
+}
+
+.profile__subtitle {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    margin: 0;
+    color: #FFFFFF;
+
+}
+
+.btn {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+}
+
+.btn:hover {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+}
+
+.btn:focus {
+    list-style: none;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+}
+
+.btn_type_pencil {
+    height: 24px;
+    width: 24px;
+    background-image: url(blocks/button/pencil.svg);
+    background-repeat: no-repeat;
+    border: solid 1px #fff;
+    background-position: center;
+    margin-left: 20px;
+    align-self: center;
+}
+
+.btn_type_add {
+    height: 50px;
+    width: 150px;
+    background-image: url(blocks/button/add.svg);
+    background-repeat: no-repeat;
+    border: solid 2px #fff;
+    background-position: center;
+    margin-left: auto;
+
+}

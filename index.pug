@@ -1,5 +1,5 @@
 doctype html
-html
+html( lang="ru")
   head
     title Место
     link(rel="stylesheet" type="text/css" href="index.css")
@@ -7,45 +7,46 @@ html
     html(lang="ru")
   body.body
     header.header
-      .logo__place-header
-      .line__place-header
-  section.profile
-    img.avatar(src="#", alt="аватар")
-    .profile-info
-      .edit-button
-      p.profile__title
-      p.profile__subtitle
-    .add-button
-  section.elements
-    .element
-      img.element__img(src="#", alt="#")
-      .element__bottom-part
-        h4.subtitle
-        .like-button
-    .element
-      img.element__img(src="#", alt="#")
-      .element__bottom-part
-        h4.subtitle
-        .like-button
-    .element
-      img.element__img(src="#", alt="#")
-      .element__bottom-part
-        h4.subtitle
-        .like-button
-    .element
-      img.element__img(src="#", alt="#")
-      .element__bottom-part
-        h4.subtitle
-        .like-button
-    .element
-      img.element__img(src="#", alt="#")
-      .element__bottom-part
-        h4.subtitle
-        .like-button
-    .element
-      img.element__img(src="#", alt="#")
-      .element__bottom-part
-        h4.subtitle
-        .like-button
-  footer.footer
-    p.copyright
+      img.logo(src="blocks/header/logo.svg", alt="логотип")
+    section.profile
+      img.avatar(src="blocks/profile/avatar.jpg", alt="аватар")
+      .profile__info
+        .profile__block-title
+          h1.profile__title Жак-Ив Кусто
+          button.btn.btn_type_pencil
+        p.profile__subtitle Исследователь океана
+     
+      button.btn.btn_type_add
+    section.elements
+      .element
+        img.element__img(src="#", alt="#")
+        .element__bottom-part
+          h2.subtitle
+          button.btn.btn_type_like
+      .element
+        img.element__img(src="#", alt="#")
+        .element__bottom-part
+          h2.subtitle
+          button.btn.btn_type_like
+      .element
+        img.element__img(src="#", alt="#")
+        .element__bottom-part
+          h2.subtitle
+          button.btn.btn_type_like
+      .element
+        img.element__img(src="#", alt="#")
+        .element__bottom-part
+          h2.subtitle
+          button.btn.btn_type_like
+      .element
+        img.element__img(src="#", alt="#")
+        .element__bottom-part
+          h2.subtitle
+          button.btn.btn_type_like
+      .element
+        img.element__img(src="#", alt="#")
+        .element__bottom-part
+          h2.subtitle
+          button.btn.btn_type_like
+    footer.footer
+      p.footer__copyright
