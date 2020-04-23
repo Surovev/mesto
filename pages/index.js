@@ -11,6 +11,7 @@ let jobInput = document.querySelector('.popup__input_type_desc');
 
 function showPopup() {
     popup.classList.remove('popup_hidden');
+    nameInput.focus();
     nameInput.value = profileTitle.textContent;
     jobInput.value = profileSubtitle.textContent;
 }
@@ -31,6 +32,7 @@ function formSubmitHandler(evt) {
     profileSubtitle.textContent = jobValue;
     removePopup();
 }
+
 
 
 formElement.addEventListener('submit', formSubmitHandler);
