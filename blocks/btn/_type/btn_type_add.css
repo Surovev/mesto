@@ -19,3 +19,17 @@
 .btn_type_add:focus {
     border: solid 2px #fff;
 }
+
+
+@media screen and (max-width: 920px) {
+    .btn_type_add {
+        margin: 36px auto 0;
+    }
+}
+
+
+@media screen and (max-width: 720px) {
+    .btn_type_add {
+        width: 280px;
+    }
+}
