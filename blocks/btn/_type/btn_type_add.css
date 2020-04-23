@@ -1,0 +1,21 @@
+.btn_type_add {
+    height: 50px;
+    width: 150px;
+    background-image: url(../add.svg);
+    background-repeat: no-repeat;
+    border: solid 2px #fff;
+    background-position: center;
+    margin-left: auto;
+    border-radius: 2px;
+
+
+
+}
+
+.btn_type_add:hover {
+    border: solid 2px #fff;
+}
+
+.btn_type_add:focus {
+    border: solid 2px #fff;
+}
