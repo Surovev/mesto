@@ -1,12 +1,12 @@
 
-let formElement = document.querySelector('.popup__container');
-let popup = document.querySelector('.popup');
-let pencil = document.querySelector('.btn_type_pencil');
-let close = document.querySelector('.btn_type_close');
-let profileTitle = document.querySelector('.profile__title');
-let profileSubtitle = document.querySelector('.profile__subtitle');
-let nameInput = document.querySelector('.popup__input_type_name');
-let jobInput = document.querySelector('.popup__input_type_desc');
+const formElement = document.querySelector('.popup__container');
+const popup = document.querySelector('.popup');
+const pencil = document.querySelector('.btn_type_pencil');
+const close = document.querySelector('.btn_type_close');
+const profileTitle = document.querySelector('.profile__title');
+const profileSubtitle = document.querySelector('.profile__subtitle');
+const nameInput = document.querySelector('.popup__input_type_name');
+const jobInput = document.querySelector('.popup__input_type_desc');
 
 
 function showPopup() {
@@ -26,8 +26,8 @@ function formSubmitHandler(evt) {
     evt.preventDefault();
 
 
-    let jobValue = jobInput.value;
-    let nameValue = nameInput.value;
+    const jobValue = jobInput.value;
+    const nameValue = nameInput.value;
     profileTitle.textContent = nameValue;
     profileSubtitle.textContent = jobValue;
     removePopup();
