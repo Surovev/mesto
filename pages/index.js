@@ -26,10 +26,9 @@ function formSubmitHandler(evt) {
     evt.preventDefault();
 
 
-    const jobValue = jobInput.value;
-    const nameValue = nameInput.value;
-    profileTitle.textContent = nameValue;
-    profileSubtitle.textContent = jobValue;
+
+    profileTitle.textContent = nameInput.value;
+    profileSubtitle.textContent = jobInput.value;
     removePopup();
 }
 
