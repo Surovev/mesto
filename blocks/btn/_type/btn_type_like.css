@@ -11,3 +11,7 @@
 .btn_type_like:hover {
     border: none
 }
+
+.btn_type_like.is-active {
+    background-image: url(../heart-black.svg);
+}

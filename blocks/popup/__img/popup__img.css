@@ -1,0 +1,15 @@
+.popup__img {
+    position: relative;
+    max-width: 75vw;
+    max-height: 75vh;
+}
+
+.popup_type_img {
+    position: relative;
+
+}
+
+.popup__background-img {
+    max-width: 75vw;
+    max-height: 75vh;
+}
