@@ -32,11 +32,9 @@ const profilePopup = document.querySelector('.js-popup-profile');
 const placePopup = document.querySelector('.js-popup-place');
 const imgPopup = document.querySelector('.js-popup-img');
 const editButton = document.querySelector('.btn_type_pencil');
-
 const addButton = document.querySelector('.btn_type_add');
 const profileName = document.querySelector('.profile__title');
 const profileDesc = document.querySelector('.profile__subtitle');
-// const submitButton = document.querySelector('.btn_type_text');
 
 function showPopup (popup) {
   popup.classList.remove('popup_hidden');
@@ -44,28 +42,32 @@ function showPopup (popup) {
 
 function addCard (name, link) {
   const cardTemplate = document.querySelector('#card-template').content;
-  const cardElement = cardTemplate.cloneNode(true);
+  const card = cardTemplate.querySelector('.element').cloneNode(true);
 
-  cardElement.querySelector('.element__img').src = link;
-  cardElement.querySelector('.element__subtitle').textContent = name;
-  const likeButton = cardElement.querySelector('.btn_type_like');
-  const deleteButton = cardElement.querySelector('.btn_type_delete');
+  card.querySelector('.element__img').src = link;
+  card.querySelector('.element__subtitle').textContent = name;
+  const likeButton = card.querySelector('.btn_type_like');
+  const deleteButton = card.querySelector('.btn_type_delete');
 
-  deleteButton.addEventListener('click', function () {
-    const imgPopupLink = imgPopup.querySelector('.popup__background-img');
+  card.addEventListener('click', function (evt) {
+    evt.stopPropagation();
+    const imgPopupLink = imgPopup.querySelector('.popup-img__background-img');
+    const imgPopupDesc = imgPopup.querySelector('.popup-img__subtitle');
+    imgPopupDesc.textContent = name;
     imgPopupLink.src = link;
     showPopup(imgPopup);
   });
 
-  // deleteButton.addEventListener('click', function () {
-  //   const card = cardTemplate.querySelector('.element');
-  //   cardTemplate.remove();
-  // });
+  deleteButton.addEventListener('click', function (evt) {
+    evt.stopPropagation();
+    card.remove();
+  });
 
-  likeButton.addEventListener('click', function () {
+  likeButton.addEventListener('click', function (evt) {
+    evt.stopPropagation();
     likeButton.classList.toggle('is-active');
   });
-  cardsContainer.append(cardElement);
+  cardsContainer.append(card);
 }
 
 function closePopup (popup) {
@@ -87,8 +89,6 @@ formElements.forEach(element => {
   });
 });
 
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
 function formSubmitHandler (evt) {
   evt.preventDefault();
   const closeButton = profilePopup.querySelector('.btn_type_close');
@@ -115,13 +115,10 @@ function formAddCard (evt) {
   });
   closePopup(placePopup);
 }
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
+
 profilePopup.addEventListener('submit', formSubmitHandler);
 
 placePopup.addEventListener('submit', formAddCard);
-
-// карточки
 
 initialCards.forEach(element => {
   addCard(element.name, element.link);
