@@ -3,6 +3,7 @@
     line-height: 15px;
     color: #FF0000;
     display: block;
-    margin-top: -28px;
-
+    z-index: 1;
+    top: 32px;
+    position: absolute;
 }
