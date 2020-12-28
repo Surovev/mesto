@@ -25,23 +25,6 @@ const initialCards = [
   }
 ];
 
-// document.addEventListener('keydown', (evt) => {
-//   if (evt.key.toLocaleLowerCase() === 'escape') {
-//     const actualPopup = document.querySelector('.popup:not(.popup_hidden)');
-//     if (actualPopup != null) {
-//       closePopup(actualPopup);
-//     }
-//   }
-// });
-
-let actualPopup;
-
-document.addEventListener('keydown', (evt) => {
-  if (actualPopup != null && evt.key.toLocaleLowerCase() === 'escape') {
-    closePopup(actualPopup);
-  }
-});
-
 // Находим форму в DOM
 const formElements = document.querySelectorAll('.popup');
 const cardsContainer = document.querySelector('.elements');
@@ -62,6 +45,14 @@ placePopup.addEventListener('submit', formAddCard);
 addButton.addEventListener('click', () => showPopup(placePopup));
 
 editButton.addEventListener('click', () => showPopup(profilePopup));
+
+let actualPopup;
+
+document.addEventListener('keydown', (evt) => {
+  if (actualPopup != null && evt.key.toLocaleLowerCase() === 'escape') {
+    closePopup(actualPopup);
+  }
+});
 
 function showPopup (popup) {
   popup.classList.remove('popup_hidden');
