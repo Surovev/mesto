@@ -1,3 +1,5 @@
+@import url(_disabled/btn_disabled.css);
+
 .btn {
     padding: 0;
     border: none;
