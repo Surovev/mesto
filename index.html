@@ -32,12 +32,12 @@
       <div class="popup__row">
         <input id="popup__input_type_name" class="popup__input popup__input_type_name" required
           placeholder="Введите имя" minlength="2" maxlength="40">
-        <span id="popup__input_type_name-error" class="popup__error_visible"></span>
+        <span id="popup__input_type_name-error" class="popup-error"></span>
       </div>
       <div class="popup__row">
         <input id="popup__input_type_desc" class="popup__input popup__input_type_desc" required placeholder="О себе"
           minlength="2" maxlength="200">
-        <span id="popup__input_type_desc-error" class="popup__error_visible"></span>
+        <span id="popup__input_type_desc-error" class="popup-error"></span>
       </div>
       <button class="btn btn_type_text">Сохранить</button>
     </form>
@@ -49,12 +49,12 @@
       <div class="popup__row">
         <input id="popup__input_type_subtitle" class="popup__input popup__input_type_subtitle" required
           placeholder="Название" minlength="2" maxlength="30">
-        <span id="popup__input_type_subtitle-error" class="popup__error_visible"></span>
+        <span id="popup__input_type_subtitle-error" class="popup-error"></span>
       </div>
       <div class="popup__row">
         <input id="popup__input_type_link" class="popup__input popup__input_type_link" type="url" required
           placeholder="Ссылка на картинку">
-        <span id="popup__input_type_link-error" class="popup__error_visible"></span>
+        <span id="popup__input_type_link-error" class="popup-error"></span>
       </div>
       <button class="btn btn_type_text">Создать</button>
     </form>
@@ -68,7 +68,7 @@
   </div>
   <template id="card-template">
     <div class="element">
-      <img class="element__img" src="#" alt="">
+      <img class="element__img" src="#" alt="#">
       <div class="element__bottom-part">
         <h2 class="element__subtitle"></h2>
         <button class="btn btn_type_like"></button>

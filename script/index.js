@@ -117,7 +117,7 @@ const options = {
   submitButtonSelector: '.btn_type_text',
   inactiveButtonClass: 'btn_disabled',
   inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
+  errorClass: 'popup-error'
 };
 
 const formList = Array.from(document.querySelectorAll(options.formSelector));

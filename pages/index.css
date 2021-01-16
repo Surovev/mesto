@@ -15,6 +15,7 @@
 @import url(../blocks/element/element.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup-error/popup-error.css);
 @import url(../blocks/popup-img/popup-img.css);
 
 @import url(../blocks/popup/_hidden/popup_hidden.css);
