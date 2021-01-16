@@ -5,11 +5,11 @@
 }
 
 .btn_type_like:focus {
-    border: none
+    border: none;
 }
 
 .btn_type_like:hover {
-    border: none
+    border: none;
 }
 
 .btn_type_like.is-active {
