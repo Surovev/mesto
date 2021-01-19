@@ -17,8 +17,5 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-body.body_loaded .popup {
     transition: opacity .4s, visibility .4s;
 }
