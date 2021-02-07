@@ -5,6 +5,7 @@ import Section from '../script/Section.js';
 import UserInfo from '../script/UserInfo.js';
 import '../pages/index.css';
 // экспортируем и создаем экземпляр классов
+
 export const userInfo = new UserInfo({ name: '.profile__title', desc: '.profile__subtitle' });
 export const imgPopup = new PopupWithImage('.js-popup-img');
 export const popupProfile = new PopupWithForm('.js-popup-profile', (data) => userInfo.setUserInfo(data));
@@ -58,6 +59,7 @@ function addCard (cardName, img) {
   cardsContainer.prepend(cardElement);
 }
 
+// создаем карточки по дефолту
 const section = new Section({
   items: initialCards,
   renderer: (item) => {
