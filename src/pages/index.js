@@ -1,8 +1,8 @@
-import Card from './Card.js';
-import PopupWithForm from './PopupWithForm.js';
-import PopupWithImage from './PopupWithImage.js';
-import Section from './Section.js';
-import UserInfo from './UserInfo.js';
+import Card from '../script/Card.js';
+import PopupWithForm from '../script/PopupWithForm.js';
+import PopupWithImage from '../script/PopupWithImage.js';
+import Section from '../script/Section.js';
+import UserInfo from '../script/UserInfo.js';
 import '../pages/index.css';
 // экспортируем и создаем экземпляр классов
 export const userInfo = new UserInfo({ name: '.profile__title', desc: '.profile__subtitle' });
