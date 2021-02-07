@@ -1,10 +1,9 @@
-import { imgPopup, imgPopupLink, imgPopupDesc, showPopup } from './index.js';
-
 export default class Card {
-  constructor (name, link, cardTemplate) {
+  constructor (name, link, cardTemplate, imgPopup) {
     this._name = name;
     this._link = link;
     this._cardTemplate = cardTemplate;
+    this._imgPopup = imgPopup;
   }
 
   _getTemplate () {
@@ -24,7 +23,7 @@ export default class Card {
       this._handleLike();
     });
     this._img.addEventListener('click', (evt) => {
-      this._handlePopup();
+      this._handleCardClick();
     });
   }
 
@@ -36,10 +35,8 @@ export default class Card {
     this._element.remove();
   }
 
-  _handlePopup (evt) {
-    imgPopupLink.src = this._link;
-    imgPopupDesc.textContent = this._name;
-    showPopup(imgPopup);
+  _handleCardClick (evt) {
+    this._imgPopup.open(this._link, this._name);
   }
 
   generateCard () {
