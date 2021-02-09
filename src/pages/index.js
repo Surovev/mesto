@@ -1,8 +1,9 @@
-import Card from '../script/Card.js';
-import PopupWithForm from '../script/PopupWithForm.js';
-import PopupWithImage from '../script/PopupWithImage.js';
-import Section from '../script/Section.js';
-import UserInfo from '../script/UserInfo.js';
+import Card from '../components/Card.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo.js';
+import FormValidator from '../components/FormValidator.js';
 import '../pages/index.css';
 // экспортируем и создаем экземпляр классов
 
@@ -43,6 +44,7 @@ const editButton = document.querySelector('.btn_type_pencil');
 const addButton = document.querySelector('.btn_type_add');
 const profileNameInput = document.querySelector('.popup__input_type_name');
 const profileDescInput = document.querySelector('.popup__input_type_desc');
+const forms = document.querySelectorAll('.popup__container');
 
 addButton.addEventListener('click', () => popupPlace.open());
 
@@ -67,4 +69,17 @@ const section = new Section({
   }
 }, '#card-template');
 
-section.addItem();
+section.renderItems();
+
+const options = {
+  formSelector: '.popup__container',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.btn_type_text',
+  inactiveButtonClass: 'btn_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup-error'
+};
+forms.forEach(item => {
+  const formValidator = new FormValidator(options, item);
+  formValidator.enableValidation();
+});

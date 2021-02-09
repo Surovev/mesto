@@ -15,6 +15,13 @@ export default class FormValidator {
         this._validateInput(input);
       });
     });
+    this._formElement.addEventListener('reset', () => {
+      this._inputElements.forEach((inputElement) => {
+        inputElement.value = ''; // поля очищаются позже ресета, по этому без этого костыля toggleButtonState работал не так как хочется.
+        this._hideError(inputElement);
+      });
+      this.toggleButtonState();
+    });
     this._formElement.addEventListener('submit', evt => {
       evt.preventDefault();
     });

@@ -48,6 +48,7 @@ export default class Card {
     this._subtitle = _item.querySelector('.element__subtitle');
     this._setEventListeners();
     this._img.src = this._link;
+    this._img.alt = this._name;
     this._subtitle.textContent = this._name;
 
     return _item;
