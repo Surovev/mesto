@@ -1,6 +1,5 @@
 export default class Card {
   constructor (data, ownerId, myId, cardTemplate, ImgPopup, deletePopup, addLike, removeLike) {
-    this.data = data;
     this._name = data.name;
     this._link = data.link;
     this._itemId = data._id;
@@ -24,7 +23,6 @@ export default class Card {
     this._delete.addEventListener('click', (evt) => {
       evt.stopPropagation();
       this._deletePopup(this._itemId);
-      // console.log(this._cardId);
       this._handleDelete();
     });
 
@@ -44,18 +42,13 @@ export default class Card {
   }
 
   _handleLike (evt) {
-    this._like.classList.toggle('is-active');
     if (!this._like.classList.contains('is-active')) {
-      this._addLike(this._itemId);
+      // Sthis._addLike(this._itemId);
       this._like.classList.add('is-active');
-
-      this.likeState();
+      this._addLike(this._itemId);
     } else {
       this._removeLike(this._itemId);
       this._like.classList.remove('is-active');
-      console.log(this._likes);
-      console.log(this._owneriId);
-      console.log(this._likes.includes(this._ownerId));
       this.likeState();
     }
   }
@@ -85,7 +78,6 @@ export default class Card {
     this._img.src = this._link;
     this._img.alt = this._name;
     this._subtitle.textContent = this._name;
-    this._handleLike();
     this.likeState();
 
     return _item;

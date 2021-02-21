@@ -35,7 +35,6 @@ export const popupProfile = new PopupWithForm('.js-popup-profile', (data) => { /
   api.getUserInfo(data);
   renderLoading(true, submitBtn);
   api.setUserInfo().then((res) => {
-    console.log(res);
     userInfo.setUserInfo(res);
     popupProfile.close();
   })
@@ -48,7 +47,6 @@ const popupPlace = new PopupWithForm('.js-popup-place', (data) => {
   renderLoading(true, submitBtn);
   api.addCard(data)
     .then((cardInfo) => {
-      console.log(cardInfo.name);
       addCard(cardInfo, cardInfo.owner._id, apiOptions.myId);
       popupPlace.close();
     })
@@ -72,10 +70,10 @@ const popupAvatar = new PopupWithForm('.js-popup-avatar', (data) => {
 });
 
 function addLike (cardId) {
-  api.addLike(cardId).then(res => console.log('addLike'));
+  return api.addLike(cardId).then(res => res);
 }
 function removeLike (cardId) {
-  api.removeLike(cardId).then(res => console.log('removeLike'));
+  api.removeLike(cardId).then(res => res);
 }
 // попапы попапы попапы попапы попапы попапы попапы попапы попапы попапы попапы попапы попапы попапы
 // Находим форму в DOM
@@ -127,7 +125,7 @@ api.getInitialCards().then((data) => {
 });
 
 api.setUserInfo().then((data) => {
-  // console.log(data); // добавление данный в профайл при загрузке страницы
+  // добавление данный в профайл при загрузке страницы
   userInfo.setUserInfo(data);
 });
 
