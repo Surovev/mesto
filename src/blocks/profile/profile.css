@@ -2,6 +2,8 @@
 @import url(__avatar/profile__avatar.css);
 @import url(__title/profile__title.css);
 @import url(__subtitle/profile__subtitle.css);
+@import url(__avatar-wrapper/profile__avatar-wrapper.css);
+@import url(__edit-avatar/profile__edit-avatar.css);
 
 
 .profile {
