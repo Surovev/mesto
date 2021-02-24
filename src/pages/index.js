@@ -69,11 +69,17 @@ const popupAvatar = new PopupWithForm('.js-popup-avatar', (data) => {
     });
 });
 
-function addLike (cardId) {
-  return api.addLike(cardId).then(res => res);
+function addLike (card) {
+  return api.addLike(card._itemId).then(res => {
+    card.setLikeState(res);
+    return res;
+  });
 }
-function removeLike (cardId) {
-  api.removeLike(cardId).then(res => res);
+function removeLike (card) {
+  return api.removeLike(card._itemId).then(res => {
+    card.setLikeState(res);
+    return res;
+  });
 }
 // попапы попапы попапы попапы попапы попапы попапы попапы попапы попапы попапы попапы попапы попапы
 // Находим форму в DOM
@@ -97,23 +103,22 @@ editButton.addEventListener('click', () => {
   profileAvatar.src = data.avatar;
   popupProfile.open();
 });
-const deletePopup = new PopupWithForm('.js-popup-delete', (inputs, data) => {
-  console.log(data);
-  api.deleteCard(data)
+const deletePopup = new PopupWithForm('.js-popup-delete', (inputs, card) => {
+  api.deleteCard(card._itemId)
     .then(res => {
       deletePopup.close();
+      card.handleDelete();
     });
 });
 
 function addCard (data, ownerId, myId, cardId) {
-  const card = new Card(data, ownerId, myId, '#card-template', imgPopup, (cardId) => deletePopup.open(cardId), (cardId) => addLike(cardId), (cardId) => removeLike(cardId));
+  const card = new Card(data, ownerId, myId, '#card-template', imgPopup, (cardId) => deletePopup.open(card), (card) => addLike(card), (card) => removeLike(card));
 
   const cardElement = card.generateCard();
   cardsContainer.prepend(cardElement);
 }
 
 api.getInitialCards().then((data) => {
-  console.log(data);
   const section = new Section({ // создание карточек при загрузке страницы
     items: data,
     renderer: (item) => {

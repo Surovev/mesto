@@ -157,7 +157,6 @@ export default class Api {
       headers: { authorization: this._autorization }
     }).then(res => {
       if (res.ok) {
-        console.log(res);
         return res.json();
       }
 

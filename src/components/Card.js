@@ -1,16 +1,16 @@
 export default class Card {
-  constructor (data, ownerId, myId, cardTemplate, ImgPopup, deletePopup, addLike, removeLike) {
+  constructor (data, ownerId, myId, cardTemplate, ImgPopup, deletePopup, addLikeCallback, removeLikeCallback) {
+    this._data = data;
     this._name = data.name;
     this._link = data.link;
     this._itemId = data._id;
-    this._likes = data.likes;
     this._ownerId = ownerId;
     this._cardTemplate = cardTemplate;
     this._ImgPopup = ImgPopup;
     this._deletePopup = deletePopup;
     this._myId = myId;
-    this._addLike = addLike;
-    this._removeLike = removeLike;
+    this._addLike = addLikeCallback;
+    this._removeLike = removeLikeCallback;
   }
 
   _getTemplate () {
@@ -22,8 +22,8 @@ export default class Card {
   _setEventListeners () {
     this._delete.addEventListener('click', (evt) => {
       evt.stopPropagation();
-      this._deletePopup(this._itemId);
-      this._handleDelete();
+      this._deletePopup(this);
+      // this._handleDelete();
     });
 
     this._like.addEventListener('click', (evt) => {
@@ -41,23 +41,25 @@ export default class Card {
     }
   }
 
-  _handleLike (evt) {
-    if (!this._like.classList.contains('is-active')) {
-      // Sthis._addLike(this._itemId);
-      this._like.classList.add('is-active');
-      this._addLike(this._itemId);
+  _handleLike () {
+    if (!this.data.likes.some(elem => elem._id === this._myId)) {
+      this._addLike(this);
     } else {
-      this._removeLike(this._itemId);
-      this._like.classList.remove('is-active');
-      this.likeState();
+      this._removeLike(this);
     }
   }
 
-  likeState () {
-    this._likeCounter.textContent = this._likes.length;
+  setLikeState (data) {
+    this.data = data;
+    if (this.data.likes.some(elem => elem._id === this._myId)) {
+      this._like.classList.add('is-active');
+    } else {
+      this._like.classList.remove('is-active');
+    }
+    this._likeCounter.textContent = this.data.likes.length;
   }
 
-  _handleDelete (evt) {
+  handleDelete () {
     this._element.remove();
   }
 
@@ -78,7 +80,7 @@ export default class Card {
     this._img.src = this._link;
     this._img.alt = this._name;
     this._subtitle.textContent = this._name;
-    this.likeState();
+    this.setLikeState(this._data);
 
     return _item;
   }
