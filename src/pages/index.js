@@ -113,7 +113,7 @@ function addCard (data, ownerId, myId, cardId) {
     myId: myId,
     cardTemplate: '#card-template',
     imgPopupCallback: () => imgPopup.open(data.link, data.name),
-    deletePopup: (cardId) => deletePopup.open(card),
+    deletePopup: (cardId) => deletePopup.open(cardId),
     addLikeCallback: (card) => addLike(card),
     removeLikeCallback: (card) => removeLike(card)
   });
