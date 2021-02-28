@@ -6,7 +6,7 @@ export default class Api {
     this._cohort = this._options.cohort;
   }
 
-  setUserInfo () {
+  getUserInfo () {
     return fetch(`${this._url}${this._cohort}users/me`, {
       headers: {
         authorization: this._autorization
@@ -25,8 +25,8 @@ export default class Api {
       });
   }
 
-  getUserInfo (data) {
-    fetch(`${this._url}${this._cohort}users/me`, {
+  setUserInfo (data) {
+    return fetch(`${this._url}${this._cohort}users/me`, {
       method: 'PATCH',
       headers: {
         authorization: this._autorization,

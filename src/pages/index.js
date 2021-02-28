@@ -6,14 +6,15 @@ import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
 import Api from '../components/Api.js';
 import '../pages/index.css';
-// import SubmitPopup from '../components/SubmitPopup.js';
+const submitBtnProfile = document.querySelector('.js-profile-submit');
+const submitBtnPlace = document.querySelector('.js-place-submit');
+const submitBtnAvatar = document.querySelector('.js-avatar-submit');
 // экспортируем и создаем экземпляр классов
 
 const apiOptions = {
   authorization: 'fd8146ec-08ee-4ae1-b040-cf6a41d6c968',
   baseUrl: 'https://mesto.nomoreparties.co/v1/',
-  cohort: 'cohort-20/',
-  myId: '30cf101270929ac519fc83f3'
+  cohort: 'cohort-20/'
 };
 const api = new Api(apiOptions);
 const userInfo = new UserInfo({ name: '.profile__title', desc: '.profile__subtitle' });
@@ -31,41 +32,37 @@ function renderLoading (isLoading, submitBtn) {
 const imgPopup = new PopupWithImage('.js-popup-img');
 
 export const popupProfile = new PopupWithForm('.js-popup-profile', (data) => { // отправляем данные из инпутов профайла на сервер и обновляем на странице
-  const submitBtn = document.querySelector('.js-profile-submit');
-  api.getUserInfo(data);
-  renderLoading(true, submitBtn);
-  api.setUserInfo().then((res) => {
+  renderLoading(true, submitBtnProfile);
+  api.setUserInfo(data).then((res) => {
     userInfo.setUserInfo(res);
     popupProfile.close();
   })
     .finally((res) => {
-      renderLoading(false, submitBtn);
+      renderLoading(false, submitBtnProfile);
     });
 });
 const popupPlace = new PopupWithForm('.js-popup-place', (data) => {
-  const submitBtn = document.querySelector('.js-place-submit');
-  renderLoading(true, submitBtn);
+  renderLoading(true, submitBtnPlace);
   api.addCard(data)
     .then((cardInfo) => {
       addCard(cardInfo, cardInfo.owner._id, apiOptions.myId);
       popupPlace.close();
     })
     .finally((res) => {
-      renderLoading(false, submitBtn);
+      renderLoading(false, submitBtnPlace);
     });
 });
 
 const popupAvatar = new PopupWithForm('.js-popup-avatar', (data) => {
-  const submitBtn = document.querySelector('.js-avatar-submit');
-  renderLoading(true, submitBtn);
+  renderLoading(true, submitBtnAvatar);
   api.updateAvatar(data)
     .then((res) => {
-      submitBtn.textContent = 'Сохранить';
+      submitBtnAvatar.textContent = 'Сохранить';
       userInfo.setUserInfo(res);
       popupAvatar.close();
     })
     .finally((res) => {
-      renderLoading(false, submitBtn);
+      renderLoading(false, submitBtnAvatar);
     });
 });
 
@@ -88,7 +85,6 @@ const editButton = document.querySelector('.btn_type_pencil');
 const addButton = document.querySelector('.btn_type_add');
 const profileNameInput = document.querySelector('.popup__input_type_name');
 const profileDescInput = document.querySelector('.popup__input_type_desc');
-const profileAvatar = document.querySelector('.profile__avatar');
 const forms = document.querySelectorAll('.popup__container');
 const avatarButton = document.querySelector('.profile__avatar');
 
@@ -100,7 +96,6 @@ editButton.addEventListener('click', () => {
   const data = userInfo.getUserInfo();
   profileNameInput.value = data.name;
   profileDescInput.value = data.desc;
-  profileAvatar.src = data.avatar;
   popupProfile.open();
 });
 const deletePopup = new PopupWithForm('.js-popup-delete', (inputs, card) => {
@@ -112,7 +107,16 @@ const deletePopup = new PopupWithForm('.js-popup-delete', (inputs, card) => {
 });
 
 function addCard (data, ownerId, myId, cardId) {
-  const card = new Card(data, ownerId, myId, '#card-template', imgPopup, (cardId) => deletePopup.open(card), (card) => addLike(card), (card) => removeLike(card));
+  const card = new Card({
+    options: data,
+    ownerId: ownerId,
+    myId: myId,
+    cardTemplate: '#card-template',
+    imgPopupCallback: () => imgPopup.open(data.link, data.name),
+    deletePopup: (cardId) => deletePopup.open(card),
+    addLikeCallback: (card) => addLike(card),
+    removeLikeCallback: (card) => removeLike(card)
+  });
 
   const cardElement = card.generateCard();
   cardsContainer.prepend(cardElement);
@@ -129,9 +133,10 @@ api.getInitialCards().then((data) => {
   section.renderItems();
 });
 
-api.setUserInfo().then((data) => {
+api.getUserInfo().then((data) => {
   // добавление данный в профайл при загрузке страницы
   userInfo.setUserInfo(data);
+  apiOptions.myId = data._id;
 });
 
 // создаем карточки по дефолту

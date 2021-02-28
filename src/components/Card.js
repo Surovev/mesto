@@ -1,12 +1,12 @@
 export default class Card {
-  constructor (data, ownerId, myId, cardTemplate, ImgPopup, deletePopup, addLikeCallback, removeLikeCallback) {
-    this._data = data;
-    this._name = data.name;
-    this._link = data.link;
-    this._itemId = data._id;
+  constructor ({ options, ownerId, myId, cardTemplate, imgPopupCallback, deletePopup, addLikeCallback, removeLikeCallback }) {
+    this._data = options;
+    this._name = options.name;
+    this._link = options.link;
+    this._itemId = options._id;
     this._ownerId = ownerId;
     this._cardTemplate = cardTemplate;
-    this._ImgPopup = ImgPopup;
+    this._imgPopupCallback = imgPopupCallback;
     this._deletePopup = deletePopup;
     this._myId = myId;
     this._addLike = addLikeCallback;
@@ -23,7 +23,6 @@ export default class Card {
     this._delete.addEventListener('click', (evt) => {
       evt.stopPropagation();
       this._deletePopup(this);
-      // this._handleDelete();
     });
 
     this._like.addEventListener('click', (evt) => {
@@ -64,7 +63,7 @@ export default class Card {
   }
 
   _handleCardClick (evt) {
-    this._ImgPopup.open(this._link, this._name);
+    this._imgPopupCallback();
   }
 
   generateCard () {
