@@ -1,7 +1,7 @@
 # mesto
 Проект 9: Место
 
-ссылка на работу: https://surovev.github.io/mesto/
+Demo: https://mesto.surovev.inlite.ru/
 
 Проект создан с использованием различных адаптивных технологий, 
 таких как grid-layout, flex-box, и других. 
